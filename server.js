@@ -29,7 +29,7 @@ if(cluster.isMaster) {
             res.write('Geef een pin, aantal en prefix op aub.');
             res.end();
         }
-    }).listen(8080), console.log('Server started...');
+    }).listen(7890), console.log('Server started...');
 } else if(cluster.isWorker) {
     process.send('Bot please');
     process.on('message', (msg) => {
