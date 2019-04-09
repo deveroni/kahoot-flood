@@ -8,7 +8,7 @@ var http = require('http');
             amount = Number(req.headers.amount),
             pin = Number(req.headers.pin),
             prefix = req.headers.prefix
-            if (shell.exec(`go run spam.go ${pin} ${prefix} ${amount}`).code !== 0) {
+            if(shell.exec(`go run spam.go ${pin} ${prefix} ${amount}`).code !== 0) {
                 res.write('Error: Kahoot spam failed');
                 res.end(500);
                 shell.exit(1);
