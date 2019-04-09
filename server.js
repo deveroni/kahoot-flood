@@ -13,6 +13,7 @@ var http = require('http');
                 res.end(500);
                 shell.exit(1);
             } else {
+                setTimeout(shell.exit(0), 5000)
                 res.write('Hij is bezig hoor! Powered by Netlob');
                 res.end(200);
             }
