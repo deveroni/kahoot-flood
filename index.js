@@ -1,7 +1,16 @@
 var Kahoot = require("kahoot.js-updated");
+
 module.exports = function(pin, name) {
     var client = new Kahoot;
-    client.join(pin, name);
+    try {
+        client.join(pin, name)
+    } catch (error) { 
+        console.dir("ERROR")
+        process.exit(0)
+        // if(error.toString() == 'request error: Kahoot session header is undefined. (This normally means that the room no longer exists.)') {
+        //     process.exit(0)
+        // }
+    }
     client.on("joined", () => {
         console.log(`Joined as ${name}`);
     });
@@ -10,6 +19,8 @@ module.exports = function(pin, name) {
         question.answer(randomnumber);
     });
     client.on("quizEnd", () => {
+        client.leave()
+        process.exit(0);
         console.log("The quiz has ended.");
     });
 }
