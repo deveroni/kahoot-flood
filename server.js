@@ -1,4 +1,5 @@
 var http = require('http');
+var shell = require('shelljs')
 // var cluster = require('cluster');
 
 // if(cluster.isMaster) {
@@ -10,12 +11,12 @@ var http = require('http');
             prefix = req.headers.prefix
             if(shell.exec('go run spam.go ' + pin + ' ' + prefix + ' ' + amount).code !== 0) {
                 res.write('Error: Kahoot spam failed');
-                res.end(500);
+                res.end();
                 shell.exit(1);
             } else {
                 setTimeout(shell.exit(0), 5000)
                 res.write('Hij is bezig hoor! Powered by Netlob');
-                res.end(200);
+                res.end();
             }
             // for (var i = 0; i < amount; i += 1) {
             //     cluster.fork();
@@ -34,7 +35,7 @@ var http = require('http');
             // });
         } else {
             res.write('Geef een pin, aantal en prefix op aub.');
-            res.end(403);
+            res.end();
         }
     }).listen(7890), console.log('Server started...');
 
